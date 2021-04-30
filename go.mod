@@ -1,4 +1,4 @@
-module github.com/kdevo/hugo-icon
+module github.com/kdevo/hugo-mod-icons
 
 go 1.13
 
