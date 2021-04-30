@@ -1,0 +1,24 @@
+{{ $usedIcons := .Page.Scratch.Get "mod-icons" }}
+{{ $stats := .Page.Scratch.Get "mod-icons_usage" }}
+
+{{ $bytes := 0 }}
+{{ $dups := slice }}
+{{ $usedBytes := 0 }}
+{{ range $usedIcons }}
+    {{ $usedBytes = add $usedBytes (len .res.Content) }}
+    {{ $cumulated := mul (index $stats .name) (len .res.Content) }}
+    {{ $bytes = add $bytes $cumulated }}
+    {{ if gt (index $stats .name) 1 }}
+      {{ $dups = append .name $dups }}
+    {{ end }}
+{{ end }}
+
+{{ warnf `
+mod-icons / stats 📈
+--------------------
+* %d Bytes used by icons
+* %d Bytes saved opposing to simple inlining approach
+* Icons that are duplicated: %v 
+--------------------
+` $usedBytes (sub $bytes $usedBytes) (cond (gt (len $dups) 0) $dups "None") }}
+{{ .Page.Scratch.Delete "mod-icons_usage" }}

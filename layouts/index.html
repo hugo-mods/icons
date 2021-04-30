@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Demo > hugo-mod-icons</title>
+  <style>
+    html {
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        /* background: #050506; */
+    }
+    .icon {
+        width: 2em;
+        height: 2em;
+        /* vertical-align: -.125em;  */
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(96px, 0.5fr));
+    }
+    .icon-col {
+        position: relative;
+        height: 64px;
+        width: 64px;
+        padding: 1rem;
+    }
+    /* Partly adapted from https://www.w3schools.com/css/css_tooltip.asp */
+    .icon-col .tooltip {
+        visibility: hidden;
+        min-width: 128px;
+        top: 100%;
+        left: 50%;
+        margin-left: -80px;
+
+        background-color: #00123f;
+        color: #fafafa;
+        text-align: center;
+        padding: 12px;
+        border-radius: 9px;
+        display: block;
+
+        position: absolute;
+        z-index: 1;
+    }
+    .icon-col:hover .tooltip {
+        visibility: visible;
+    }
+    .code {
+        font-family: 'Courier New', Courier, monospace;
+    }
+  </style>
+  <script>
+
+  </script>
+</head>
+
+<body>
+    <div class="grid">
+    {{ $colors1 := slice "#c97b84ff" "#a85751ff" "#7d2e68ff" "#251351ff" "#040926ff" }}
+    {{ range resources.Match "mod-icons/fa/svg/solid/*.svg" }}
+        {{ $name := printf "%s %s" "fas" (replace (.Name | path.Base) (.Name | path.Ext) "") }}
+        {{ $color := index (shuffle $colors1) 0 }}
+
+        {{ with (partial "icon" (dict "context" $ "name" $name "loader" "svg-use-ext")) }}
+        <div class="icon-col" style="fill: {{ $color }}">
+            {{ .icon }}
+            <span class="tooltip"><code>{{ $name }}</code></span>
+            <div class="search" style="opacity: 0">{{ .label }}</div>
+        </div>
+        {{ end }}
+    {{ end }}
+    </div>
+    <div class="grid">
+    {{ $colors2 := slice "#a0a0a0a0" "#00a7e1ff" "#00171fff" "#003459ff" "#007ea7ff" }}
+    {{ range resources.Match "mod-icons/fa/svg/brands/*.svg" }}
+        {{ $name := printf "%s %s" "fab" (replace (.Name | path.Base) (.Name | path.Ext) "") }}
+        {{ $color := index (shuffle $colors2) 0 }}
+
+        {{ with (partial "icon" (dict "context" $ "name" $name "loader" "svg-use-ext")) }}
+        <div class="icon-col" style="fill: {{ $color }}">
+            {{ .icon }}
+            <span class="tooltip"><code>{{ $name }}</code></span>
+            <div class="search" style="opacity: 0">{{ .label }}</div>
+        </div>
+        {{ end }}
+    {{ end }}
+    </div>
+    {{ partial "icon-data" . }}
+</body>

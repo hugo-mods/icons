@@ -1,0 +1,25 @@
+<!-- Parameters -->
+{{ $icon := .icon | lower }}
+{{ $iconSplit := split $icon " " }}
+{{ $iconPrefix := index $iconSplit 0 }}
+{{ $iconName := cond (gt (len $iconSplit) 1) (index $iconSplit 1) $iconPrefix }}
+{{ $iconName = replace $iconName "fa-" "" }}
+
+<!-- Directory settings -->
+{{ $base := "mod-icons" }}
+{{ $faIcons := printf "%s/%s/svg" $base "fa" }}
+{{ $prefixMap := dict 
+    "fas" (printf "%s/%s" $faIcons "solid")
+    "far" (printf "%s/%s" $faIcons "regular")
+    "fab" (printf "%s/%s" $faIcons "brands") }}
+
+{{ $res := (resources.Get (printf "%s/%s.svg" (index $prefixMap $iconPrefix) $iconName)) }}
+{{ $foundMetadata := (partial "icon-meta-search" $iconName) }}
+<!-- Warn if we could not find the resource directly but through a search -->
+{{ if (and $foundMetadata (eq $res nil)) }}
+    <!-- TODO(kdevo): add git.io shortlink here to docs for the feature -->
+    {{ warnf "mod-icons: found '%s' → '%s' via search method %s - please do not rely on this and use the resolved icon '%s' directly." $icon $foundMetadata.name $foundMetadata.resolveMethod $foundMetadata.name }}
+    {{ $res = (partial "icon-resolve" (dict "icon" $foundMetadata.name)).res }}
+{{ end }}
+
+{{ return (merge $foundMetadata (dict "res" $res)) }}

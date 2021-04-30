@@ -1,0 +1,21 @@
+{{ $usedIcons := .Page.Scratch.Get "mod-icons" }}
+{{ if $usedIcons }}
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      {{ range $usedIcons }}
+        <!-- Unpack SVG -->
+        {{ $content := replaceRE `<svg .*?>` "" (replaceRE `</svg>` "" .res.Content) }}
+        <!-- Get viewbox -->
+        {{ $viewBox := substr (index (findRE `viewBox=".*">` .res.Content) 0) 0 -1 }}
+        {{ $viewBoxContent := substr (index (findRE `".*"` $viewBox) 0) 1 -1 }}
+        <symbol id="icon-{{ .id }}" viewBox="{{ $viewBoxContent }}">
+          <title>{{ .label }}</title>
+          {{ $content | safeHTML }}
+        </symbol>
+      {{ end }}
+  </svg>
+  {{ if .Site.Params.mod_icons.enableStats }}
+    {{ partial "icon-stats" . }}
+  {{ end }}
+{{ else }}
+  {{ warnf "mod-icons: no used icons found. please ensure that the icon-data partial is loaded last in your body!" }}
+{{ end }}

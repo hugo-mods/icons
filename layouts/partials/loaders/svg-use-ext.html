@@ -1,0 +1,2 @@
+{{ $content := partial "loaders/svg-use" . }}
+{{ return (merge (dict "icon" $content) .) }}

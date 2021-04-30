@@ -1,0 +1,42 @@
+<!-- Parameters -->
+{{ $usage := `use like 'partial "icon" (dict "context" . "name" "YOUR-ICON")` }}
+{{ if not (reflect.IsMap .) }}
+   {{ errorf "mod-icons: %s" $usage }}
+{{ end }}
+{{ if not .name }}
+   {{ errorf "mod-icons: missing icon name: %s" $usage }}
+{{ end }}
+{{ $loader := printf "loaders/%s" (default "svg-use" .loader) }}
+{{ $icon := .name }}
+{{ if not $icon }}
+    {{ errorf "mod-icons: icon parameter must be given" }}
+{{ end }}
+
+<!-- User's custom mapping -->
+{{ with .context.Site.Data.icons }}
+    {{ with index . $icon }}
+    {{ $icon = . }}
+    {{ end }}
+{{ end }}
+
+<!-- Resolve if necessary -->
+{{ $resolved := false }}
+{{ with .context.Page.Scratch.Get "mod-icons" }}
+    {{ $resolved = index . $icon }}
+{{ end }}
+{{ if not $resolved }}
+    {{ $resolved = partial "icon-resolve" (dict "icon" $icon) }}
+{{ end }}
+
+<!-- Add to used icons -->
+{{ .context.Page.Scratch.SetInMap "mod-icons" $resolved.name $resolved }}
+
+<!-- Add usage stats: -->
+{{ $count := 1 }}
+{{ with (.context.Page.Scratch.Get "mod-icons_usage") }}
+    {{ with (index . $resolved.name) }} {{ $count = add . 1 }} {{ end }}
+{{ end }}
+{{ .context.Page.Scratch.SetInMap "mod-icons_usage" $resolved.name $count }}
+
+<!-- Return icon use -->
+{{ return (partial $loader $resolved) }}

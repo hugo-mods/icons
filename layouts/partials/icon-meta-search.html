@@ -1,0 +1,50 @@
+{{ $base := "mod-icons" }}
+<!-- Parameters -->
+{{ $icon := . }}
+{{ $iconName := $icon }}
+
+<!-- Resolve directory -->
+{{ $faMeta := printf "%s/%s/meta" $base "fa" }}
+{{ $styleMap := dict
+    "solid" "fas" 
+    "regular" "far"
+    "brands" "fab"
+}}
+{{ $meta := (resources.Get (printf "%s/icons.yml" $faMeta)) | transform.Unmarshal }}
+
+{{ $found := "" }}
+{{ $byMethod := "" }}
+<!-- Try directly accessing with key icon name -->
+{{ if (index $meta $iconName) }}
+    {{ $found = $iconName }}
+    {{ $byMethod = "key" }}
+{{ else }}
+    <!-- Otherwise let's search the terms -->
+    {{ range $k, $v := $meta}}
+        {{ if not $found }}
+            {{ if in $v.search.terms $iconName }}
+                {{ $found = $k }}
+                {{ $byMethod = "terms" }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+    <!-- If still not found, try string-infix search terms method (not accurate) -->
+    {{ if not $found }}
+        {{ range $k, $v := $meta}}
+            {{ if not $found }}
+                {{ if in (delimit $v.search.terms " ") $iconName }}
+                    {{ $found = $k }}
+                    {{ $byMethod = "in-terms" }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+{{ if not $found }}
+    {{ errorf "mod-icons: could not find icon '%s' by any search method" $iconName }}
+{{ end }}
+
+{{ $entry := index $meta $found }}
+{{ $style := index $entry.styles 0 }}
+{{ $fullName := printf "%s %s" (index $styleMap $style) $found }}
+{{ return (dict "id" $found "name" $fullName "style" $style "label" $entry.label "resolveMethod" $byMethod) }}
