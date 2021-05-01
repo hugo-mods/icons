@@ -60,7 +60,7 @@
         {{ $name := printf "%s %s" "fas" (replace (.Name | path.Base) (.Name | path.Ext) "") }}
         {{ $color := index (shuffle $colors1) 0 }}
 
-        {{ with (partial "icon" (dict "context" $ "name" $name "loader" "svg-use-ext")) }}
+        {{ with (partial "icon" (dict "context" $ "name" $name "loader" "svg-use-advanced")) }}
         <div class="icon-col" style="fill: {{ $color }}">
             {{ .icon }}
             <span class="tooltip"><code>{{ $name }}</code></span>
@@ -75,7 +75,7 @@
         {{ $name := printf "%s %s" "fab" (replace (.Name | path.Base) (.Name | path.Ext) "") }}
         {{ $color := index (shuffle $colors2) 0 }}
 
-        {{ with (partial "icon" (dict "context" $ "name" $name "loader" "svg-use-ext")) }}
+        {{ with (partial "icon" (dict "context" $ "name" $name "loader" "svg-use-advanced")) }}
         <div class="icon-col" style="fill: {{ $color }}">
             {{ .icon }}
             <span class="tooltip"><code>{{ $name }}</code></span>
