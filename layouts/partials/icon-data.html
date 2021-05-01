@@ -1,4 +1,12 @@
-{{ $usedIcons := .Page.Scratch.Get "mod-icons" }}
+{{ $usedIcons := .Scratch.Get "mod-icons" }}
+{{ if not $usedIcons }}
+  {{ range $alias, $resolve := .Site.Data.icons }}
+    {{ $icon := (partial "icon" (dict "context" $ "name" $alias)) }}
+  {{ end }}
+{{ end }}
+
+{{ $usedIcons = .Scratch.Get "mod-icons" }}
+{{ $enableAutoTitle := default true site.Params.mod_icons.enableAutoTitle }}
 {{ if $usedIcons }}
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       {{ range $usedIcons }}
@@ -8,7 +16,8 @@
         {{ $viewBox := substr (index (findRE `viewBox=".*">` .res.Content) 0) 0 -1 }}
         {{ $viewBoxContent := substr (index (findRE `".*"` $viewBox) 0) 1 -1 }}
         <symbol id="icon-{{ .id }}" viewBox="{{ $viewBoxContent }}">
-          <title>{{ .label }}</title>
+          {{ with .label }}<title>{{ . }}</title>{{ end }}
+          {{ with .description }}<desc>{{ . }}</desc>{{ end }}
           {{ $content | safeHTML }}
         </symbol>
       {{ end }}
