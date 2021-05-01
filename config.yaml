@@ -1,15 +1,19 @@
 Params:
   mod_icons:
-    enableStats: true
-
+    enableAutoTitle: true
+    enableStats: false
+    defaultLoader: svg-use
+    defaultShortcodeLoader: svg-inline
+    iconBaseClass: icon
 
 module:
   hugoVersion:
     extended: true
-    min: "0.80.0"
+    # needed for multi-line dicts and some other advanced features:
+    min: "0.80.0"  
+    max: "1.00.0"
   imports:
   - path: "github.com/FortAwesome/Font-Awesome"
-    # FS-like mounting, cf. https://github.com/bep/docuapi/blob/master/config.toml
     mounts:
     - source: "svgs/"
       target: "assets/mod-icons/fa/svg/"
