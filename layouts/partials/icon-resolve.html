@@ -14,7 +14,7 @@
     "fab" (printf "%s/%s" $faIcons "brands") }}
 
 {{ $res := (resources.Get (printf "%s/%s.svg" (index $prefixMap $iconPrefix) $iconName)) }}
-{{ $foundMetadata := (partial "icon-meta-search" $iconName) }}
+{{ $foundMetadata := (partial "icon-meta" $iconName) }}
 <!-- Warn if we could not find the resource directly but through a search -->
 {{ if (and $foundMetadata (eq $res nil)) }}
     <!-- TODO(kdevo): add git.io shortlink here to docs for the feature -->
