@@ -1,18 +1,17 @@
-<a href="https://git.io/🪅"><img alt="Logo" align="right" width="100" src="https://raw.githubusercontent.com/kdevo/hugo-mod-icons/main/.github/logo.png"></a>
+<a href="https://git.io/🪅"><img alt="Logo" align="right" width="200" src="https://raw.githubusercontent.com/kdevo/hugo-mod-icons/main/.github/mug.png"></a>
 
 # > hugo-mod-icons
 ## A Hugo Icon Module that scales.
 
-- SVG-based symbol icon system - it's 2021 and icon fonts [mostly suck](https://css-tricks.com/icon-fonts-vs-svg/)
-    - Wide browser compatibility
-    - Re-using icons will not make your page bigger
-    - Auto-enabled accessiblity by using `title` SVG symbol tag
+- [SVG symbol icon system](https://css-tricks.com/svg-symbol-good-choice-icons/): High performance with great browser support 
 - Currently [supports Font Awesome](#icons), but aims to be icon-family agnostic in future 
-- Clean API using `icon` and `icon-data` partials with [various usage patterns](#usage)
-- Carefully implemented and structured [partials](./layouts/partials), fully utilizing Hugo's capabilities
-- Smart and comfortable [icon search function](#how-does-it-work) 
+- User-friendly API with support for [various usage patterns](#usage), including custom icon name support
+- [Carefully implemented](https://kdevo.medium.com/-7c0acb90eeec#341e) and structured [partials](./layouts/partials)
+- Smart and comfortable [icon search function](https://kdevo.medium.com/-7c0acb90eeec#341e) 
+- Auto-enabled [accessibility](https://css-tricks.com/svg-symbol-good-choice-icons/#why-symbol-is-better-for-icons) by considering icon’s metadata
 
-> Hand-made with :heart: by [KDEVO](https://kdevo.github.io/), maintainer of the [Osprey Delight](https://github.com/kdevo/osprey-delight) theme, which directly benefits from this module!
+> Hand-made with :heart: by [KDEVO](https://kdevo.github.io/).
+> Maintainer of the [Osprey Delight theme](https://github.com/kdevo/osprey-delight), which directly benefits from this module.
 
 ## Go get it
 
@@ -108,8 +107,8 @@ Finally, place the actual data (non-visible) at the very end of the body just as
 
 ```html
 <body>
-    {{ partial "icon-data" . }}
     <!-- [...] -->
+    {{ partial "icon-data" . }}
 </body>
 ```
 
@@ -130,11 +129,9 @@ Lorem ipsum and so on...
 > tldr: `hugo-mod-icons` rocks {{< icon "guitar" >}}
 ```
 
-### How does it work?
+### Advanced
 
-Read more about how it works in an upcoming article.
-
-
+To be continued. Documentation about mixing patterns and icon loaders will follow here.
 
 [fab]: https://github.com/FortAwesome/Font-Awesome/tree/5.15.3/svgs/brands
 [fas]: https://github.com/FortAwesome/Font-Awesome/tree/5.15.3/svgs/solid
