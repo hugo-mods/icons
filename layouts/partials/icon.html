@@ -24,6 +24,7 @@
 
 <!-- User's custom mapping -->
 {{ $iconDict := dict }}
+{{ if site.Data.icons }}
 {{ with index site.Data.icons $icon }}
     {{ if reflect.IsMap . }}
         {{ $iconDict = dict 
@@ -38,6 +39,7 @@
             "id" (replace $icon " " "-") }}
         {{ $icon = trim . " " }}
     {{ end }}
+{{ end }}
 {{ end }}
 
 <!-- Resolve if necessary -->
