@@ -1,2 +1,2 @@
-{{ $loader := (default "svg-inline" (default .Site.Params.defaultShortcodeLoader (.Get 1))) }}
+{{ $loader := (default "svg-inline" (default .Site.Params.defaultLoaderShortcode (.Get 1))) }}
 {{ partial "icon" (dict "context" . "name" (.Get 0) "loader" $loader) }}

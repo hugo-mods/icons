@@ -3,7 +3,7 @@ Params:
     enableAutoTitle: true
     enableStats: false
     defaultLoader: svg-use
-    defaultShortcodeLoader: svg-inline
+    defaultLoaderShortcode: svg-inline
     iconBaseClass: icon
 
 module:
