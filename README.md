@@ -1,6 +1,6 @@
-<a href="https://git.io/🪅"><img alt="Logo" align="right" width="200" src="https://raw.githubusercontent.com/kdevo/hugo-mod-icons/main/.github/mug.png"></a>
+<a href="https://git.io/🪅"><img alt="Logo" align="right" width="200" src="https://raw.githubusercontent.com/hugo-mods/icons/main/.github/mug.png"></a>
 
-# > hugo-mod-icons
+# hugo-mods > icons
 ## A Hugo Icon Module that scales.
 
 - [SVG symbol icon system](https://css-tricks.com/svg-symbol-good-choice-icons/): High performance with great browser support 
@@ -24,7 +24,7 @@ Add module to site's config (e.g. `config.yaml`):
 ```yaml
 module:
   imports:
-  - path: github.com/kdevo/hugo-mod-icons 
+  - path: github.com/hugo-mods/icons
 ```
 
 Get the module (also upgrades existing one):
@@ -75,7 +75,7 @@ Finally, place the actual data (non-visible) at the very end of the body:
 It's important that the context is the same as the one passed to the first `partial "icon"`, 
 which is sometimes a bit tricky, hence the next pattern has been invented.
 
-> :bulb: hugo-mod-icons will automatically keep track of all your referenced icons and only add the ones that are actually needed ONCE. No matter how many times you reference one and the same icon.
+> :bulb: The module will automatically keep track of all your referenced icons and only add the ones that are actually needed ONCE. No matter how many times you reference one and the same icon.
 
 ### Data Pattern
 
@@ -98,7 +98,7 @@ Next, you reference the icon like:
 ```html
 <body>
     <!-- [...] -->
-    <h1>I {{ partial "icon" "heart" }} hugo-mod-icons!</h1>
+    <h1>I {{ partial "icon" "heart" }} icons!</h1>
     <!-- [...] -->
 </body>
 ```
@@ -121,12 +121,12 @@ You can also use this mod from within your content files with the `icon` shortco
 
 ```markdown
 ---
-title: "hugo-mod-icons"
+title: "My post"
 ---
 
 Lorem ipsum and so on...
 
-> tldr: `hugo-mod-icons` rocks {{< icon "guitar" >}}
+> tldr: `hugo-mods` rock {{< icon "guitar" >}}
 ```
 
 ### Advanced
