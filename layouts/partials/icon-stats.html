@@ -6,10 +6,10 @@
   {{ $usedBytes := 0 }}
   {{ range $usedIcons }}
       {{ $usedBytes = add $usedBytes (len .res.Content) }}
-      {{ $cumulated := mul (index $stats .name) (len .res.Content) }}
+      {{ $cumulated := mul (index $stats .id) (len .res.Content) }}
       {{ $bytes = add $bytes $cumulated }}
-      {{ if gt (index $stats .name) 1 }}
-        {{ $dups = append .name $dups }}
+      {{ if gt (index $stats .id) 1 }}
+        {{ $dups = append .id $dups }}
       {{ end }}
   {{ end }}
 

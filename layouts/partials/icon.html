@@ -63,15 +63,15 @@
 
 <!-- Add to used icons -->
 {{ with $context }}
-    {{ .Scratch.SetInMap "mod-icons" $resolved.name $resolved }}
+    {{ .Scratch.SetInMap "mod-icons" $resolved.id $resolved }}
     <!-- Add usage stats: -->
     {{ $count := 1 }}
     {{ with (.Scratch.Get "mod-icons_usage") }}
-        {{ with (index . $resolved.name) }}
+        {{ with (index . $resolved.id) }}
           {{ $count = add . 1 }}
         {{ end }}
     {{ end }}
-    {{ .Scratch.SetInMap "mod-icons_usage" $resolved.name $count }}
+    {{ .Scratch.SetInMap "mod-icons_usage" $resolved.id $count }}
 {{ end }}
 
 <!-- Return icon use -->

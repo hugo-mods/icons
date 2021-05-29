@@ -47,4 +47,4 @@
 {{ $entry := index $meta $found }}
 {{ $style := index $entry.styles 0 }}
 {{ $fullName := printf "%s %s" (index $styleMap $style) $found }}
-{{ return (dict "id" $found "name" $fullName "style" $style "label" $entry.label "resolveMethod" $byMethod) }}
+{{ return (dict "id" $icon "resolvedName" $fullName "style" $style "label" $entry.label "resolveMethod" $byMethod) }}
