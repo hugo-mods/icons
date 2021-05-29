@@ -1,0 +1,13 @@
+# Three types of usage:
+
+# 1. Shortest form to inform the module about a used icon via "Data Pattern"
+fas heart:
+
+# 2. Short form for icon custom name mapping
+heart: fas heart
+
+# 3. Extensive form with custom icon title and description (accessibility)
+love:
+  id: fas heart
+  title: Love
+  description: This shows a heart

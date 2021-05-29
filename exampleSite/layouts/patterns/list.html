@@ -1,0 +1,15 @@
+{{ define "title"}}{{ .Title }}{{ end }}
+{{ define "main" }}
+  <!-- Data Pattern -->
+  {{ partial "icon" "fas heart" }}
+  {{ partial "icon" "heart" }}
+  {{ partial "icon" "love" }}
+  <!-- Note that when using the data pattern, you have to ensure that the icon is defined in the data/icons.yaml file. -->
+  <!-- In this case, "warning" does not exist in the file. Hence, there will be no icon rendered on this page. -->
+  {{ partial "icon" "warning" }}
+
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+
+  {{ partial "icon-data" . }}
+{{ end }}

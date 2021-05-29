@@ -1,0 +1,43 @@
+html {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    /* background: #050506; */
+}
+.icon {
+    width: 2em;
+    height: 2em;
+    /* vertical-align: -.125em;  */
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(96px, 0.5fr));
+}
+.icon-col {
+    position: relative;
+    height: 64px;
+    width: 64px;
+    padding: 1rem;
+}
+/* Partly adapted from https://www.w3schools.com/css/css_tooltip.asp */
+.icon-col .tooltip {
+    visibility: hidden;
+    min-width: 128px;
+    top: 100%;
+    left: 50%;
+    margin-left: -80px;
+
+    background-color: #00123f;
+    color: #fafafa;
+    text-align: center;
+    padding: 12px;
+    border-radius: 9px;
+    display: block;
+
+    position: absolute;
+    z-index: 1;
+}
+.icon-col:hover .tooltip {
+    visibility: visible;
+}
+.code {
+    font-family: 'Courier New', Courier, monospace;
+}

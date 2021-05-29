@@ -1,6 +1,6 @@
 <a href="https://git.io/🪅"><img alt="Logo" align="right" width="200" src="https://raw.githubusercontent.com/hugo-mods/icons/main/.github/mug.png"></a>
 
-# hugo-mods > icons
+# hugo-mods: icons
 ## A Hugo Icon Module that scales.
 
 - [SVG symbol icon system](https://css-tricks.com/svg-symbol-good-choice-icons/): High performance with great browser support 
@@ -132,6 +132,8 @@ Lorem ipsum and so on...
 ### Advanced
 
 To be continued. Documentation about mixing patterns and icon loaders will follow here.
+Please also check out the [exampleSite](./exampleSite) which you can examine and e.g.
+launch via `hugo serve exampleSite`.
 
 [fab]: https://github.com/FortAwesome/Font-Awesome/tree/5.15.3/svgs/brands
 [fas]: https://github.com/FortAwesome/Font-Awesome/tree/5.15.3/svgs/solid

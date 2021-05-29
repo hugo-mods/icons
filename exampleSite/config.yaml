@@ -1,12 +1,14 @@
 module:
   imports:
-  - path: github.com/kdevo/hugo-mod-icons 
+  - path: github.com/hugo-mods/icons
+  replacements:
+  - github.com/hugo-mods/icons -> ../../.
 
 Params:
+  # These parameters are optional, they reflect the internal defaults:
   mod_icons:
     enableAutoTitle: true
     enableStats: true
     defaultLoader: svg-use
-    defaultShortcodeLoader: svg-inline
+    defaultLoaderShortcode: svg-inline
     iconBaseClass: icon
-
