@@ -1,11 +1,10 @@
-{{ $usedIcons := .Scratch.Get "mod-icons" }}
-{{ if not $usedIcons }}
+{{ if not (.Scratch.Get "mod-icons") }}
   {{ range $alias, $resolve := .Site.Data.icons }}
-    {{ $icon := (partial "icon" (dict "context" $ "name" $alias)) }}
+    {{ $_ := partial "icon" (dict "context" $ "name" $alias) }}
   {{ end }}
 {{ end }}
 
-{{ $usedIcons = .Scratch.Get "mod-icons" }}
+{{ $usedIcons := .Scratch.Get "mod-icons" }}
 {{ $enableAutoTitle := default true site.Params.mod_icons.enableAutoTitle }}
 {{ if $usedIcons }}
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -13,9 +12,8 @@
         <!-- Unpack SVG -->
         {{ $content := replaceRE `<svg .*?>` "" (replaceRE `</svg>` "" .res.Content) }}
         <!-- Get viewbox -->
-        {{ $viewBox := substr (index (findRE `viewBox=".*">` .res.Content) 0) 0 -1 }}
-        {{ $viewBoxContent := substr (index (findRE `".*"` $viewBox) 0) 1 -1 }}
-        <symbol id="icon-{{ .id }}" viewBox="{{ $viewBoxContent }}">
+        {{ $viewBox := (replaceRE `.*viewBox="(.*?)".*` "$1" .res.Content) }}
+        <symbol id="icon-{{ .id }}" viewBox="{{ $viewBox }}">
           {{ with .label }}<title>{{ . }}</title>{{ end }}
           {{ with .description }}<desc>{{ . }}</desc>{{ end }}
           {{ $content | safeHTML }}
@@ -26,5 +24,5 @@
     {{ partial "icon-stats" . }}
   {{ end }}
 {{ else }}
-  {{ warnf "mod-icons: no used icons found. please ensure that the icon-data partial is loaded last in your body!" }}
+  {{ warnf "mod-icons: no used icons found. please ensure that the 'icon-data' partial is loaded LAST in your body!" }}
 {{ end }}
