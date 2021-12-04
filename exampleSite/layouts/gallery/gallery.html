@@ -1,7 +1,8 @@
 {{ define "main" }}
     <div class="grid">
-    {{ $colors1 := slice "#c97b84ff" "#a85751ff" "#7d2e68ff" "#251351ff" "#040926ff" }}
-    {{ range resources.Match "mod-icons/fa/svg/solid/*.svg" }}
+    {{/* https://coolors.co/030826-5750e2-bd0fa3-f56a61-600aeb */}}
+    {{ $colors1 := slice "#5750E2" "#BD0FA3" "#F56A61" "#F56A61" "#600AEB" }}
+    {{ range (shuffle (resources.Match "mod-icons/fa/svg/solid/*.svg")) }}
         {{ $name := printf "%s %s" "fas" (replace (.Name | path.Base) (.Name | path.Ext) "") }}
         {{ $color := index (shuffle $colors1) 0 }}
 
