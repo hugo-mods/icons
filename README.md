@@ -1,4 +1,4 @@
-<a href="https://git.io/🪅"><img alt="Logo" align="right" width="200" src="https://raw.githubusercontent.com/hugo-mods/icons/main/.github/mug.png"></a>
+<a href="https://git.io/🪅"><img alt="Logo" align="right" width="200" src="https://raw.githubusercontent.com/hugo-mods/icons/main/.github/logo.png"></a>
 
 # hugo-mods: icons
 ## A Hugo Icon Module that scales.
@@ -10,14 +10,11 @@
 - Smart and comfortable [icon search function](https://kdevo.medium.com/-7c0acb90eeec#341e) 
 - Auto-enabled [accessibility](https://css-tricks.com/svg-symbol-good-choice-icons/#why-symbol-is-better-for-icons) by considering icon’s metadata
 
-> Hand-made with :heart: by [KDEVO](https://kdevo.github.io/).
-> Maintainer of the [Osprey Delight theme](https://github.com/kdevo/osprey-delight), which directly benefits from this module.
-
 ## Go get it
 
 Initialize [Hugo's mod system](https://gohugo.io/hugo-modules/) on your site:
 
-`hugo mod init github.com/{username}/{repo}`
+`hugo mod init github.com/<username>/<your-repo>`
 
 Add module to site's config (e.g. `config.yaml`):
 
