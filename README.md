@@ -55,7 +55,7 @@ Reference icons with:
 ```html
 <body>
     <!-- [...] -->
-    <h1>I {{ partial "icon" (context . name "fas heart") }} hugo-mod-icons!</h1>
+    <h1>I {{ partial "icon" (dict "context" . "name" "fas heart") }} hugo-mod-icons!</h1>
     <!-- [...] -->
 </body>
 ```
