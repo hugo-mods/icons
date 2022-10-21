@@ -1,4 +1,4 @@
-module github.com/hugo-mods/icons
+module github.com/adamaltmejd/hugo-icons
 
 go 1.13
 
